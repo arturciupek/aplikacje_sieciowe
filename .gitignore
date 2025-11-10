@@ -1,0 +1,12 @@
+# Smarty cache
+php_04_szablony_smarty/templates_c/
+
+# Editor / system
+.vscode/
+Thumbs.db
+desktop.ini
+
+# Logs / temp
+*.log
+*.tmp
+
