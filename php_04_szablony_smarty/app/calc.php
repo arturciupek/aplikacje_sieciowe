@@ -18,7 +18,7 @@ function getParams(&$form){
 }
 
 // 3. walidacja parametrów z przygotowaniem zmiennych dla widoku
-function validate(&$form,&$infos,&$msgs,&$hide_intro){
+function validate(&$form,&$infos,&$msgs){
 		// sprawdzenie, czy parametry zostały przekazane - jeśli nie to zakończ walidację
 		if ( ! (isset($form['kwota']) && isset($form['lata']) && isset($form['procent']))) return false;
 			//sytuacja wystąpi kiedy np. kontroler zostanie wywołany bezpośrednio - nie z formularza
@@ -27,9 +27,6 @@ function validate(&$form,&$infos,&$msgs,&$hide_intro){
 		//parametry przekazanie zatem
 		//nie pokazuj wstępu strony gdy tryb obliczeń (aby nie trzeba było przesuwać)
 		
-		// ta zmienna zostanie użyta w widoku aby nie wyświetlać całego bloku intro z tłem
-		$hide_intro = true;
-
 		$infos [] = 'Przekazano parametry.';
 
 		// sprawdzenie, czy potrzebne wartości zostały przekazane
@@ -109,11 +106,10 @@ function process(&$form,&$infos,&$msgs,&$rata) {
 	$infos = [];
 	$msgs =[];
 	$rata = null;
-	$hide_intro = false;
 
 	//pobierz parametry i wykonaj zadanie jeśli wszystko w porządku
 	getParams($form);
-	if (validate($form,$infos,$msgs,$hide_intro)) {  //gdy brak błędów
+	if (validate($form,$infos,$msgs)) {  //gdy brak błędów
 			process($form,$infos,$msgs,$rata);
 	}
 
@@ -126,8 +122,6 @@ $smarty->assign('root_path',_ROOT_PATH);
 $smarty->assign('page_title','Przykład 04');
 $smarty->assign('page_description','Profesjonalne szablonowanie oparte na bibliotece Smarty');
 $smarty->assign('page_header','Kalkulator kredytowy');
-
-$smarty->assign('hide_intro',$hide_intro);
 
 //pozostałe zmienne niekoniecznie muszą istnieć, dlatego sprawdzamy aby nie otrzymać ostrzeżenia
 $smarty->assign('form',$form);
