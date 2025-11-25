@@ -1,5 +1,5 @@
-# Smarty cache
-php_04_szablony_smarty/templates_c/
+# Smarty cache/compiled templates
+**/templates_c/
 
 # Editor / system
 .vscode/
